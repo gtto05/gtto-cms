@@ -1,6 +1,9 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import React, { Component } from 'react';
+import axios from 'axios'
+import qs from 'qs'
+
 import './css/login.less';
 import logo from './images/logo.jpg';
 
@@ -8,24 +11,40 @@ export default class Login extends Component {
 
   onFinish = (values) => {
     console.log('Received values of form: ', values);
-  }
+    // 发送请求 axios
+    axios.post('http://localhost:3000/login',qs.stringify(values))
+    .then(res=>console.log(res.data))
+    .catch(err=>console.log(err))
 
+    // fetch
+    // fetch('http://localhost:3000/login',{
+    //   method:'POST',
+    //   headers: {
+    //     // 'Content-Type': 'application/json'
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
+    //   body:qs.stringify(values)
+    // })
+    // .then(res=>res.json())
+    // .then(data=>console.log(data))
+  }
+  
 
   // 获取校验规则
   getRules = (type) => {
     type = type === 'username' ? '用户名' : '密码'
     return [
       {
-        min:4,
-        message:`${type}最小为4位`
+        min: 4,
+        message: `${type}最小为4位`
       },
       {
-        max:12,
-        message:`${type}最大为12位`
+        max: 12,
+        message: `${type}最大为12位`
       },
       {
-        pattern:/^\w+$/,
-        message:`${type}不合法!`
+        pattern: /^\w+$/,
+        message: `${type}不合法!`
       },
       {
         required: true,
