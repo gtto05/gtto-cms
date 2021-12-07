@@ -1,34 +1,35 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import React, { Component } from 'react';
-import axios from 'axios'
-import qs from 'qs'
+
+import { reqLogin } from '../../utils/api'
 
 import './css/login.less';
 import logo from './images/logo.jpg';
 
 export default class Login extends Component {
 
-  onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    // 发送请求 axios
-    axios.post('http://localhost:3000/login',qs.stringify(values))
-    .then(res=>console.log(res.data))
-    .catch(err=>console.log(err))
-
-    // fetch
-    // fetch('http://localhost:3000/login',{
-    //   method:'POST',
-    //   headers: {
-    //     // 'Content-Type': 'application/json'
-    //     'Content-Type': 'application/x-www-form-urlencoded',
-    //   },
-    //   body:qs.stringify(values)
+  onFinish = async (values) => {
+    // console.log('Received values of form: ', values);
+    // 发送请求
+    // reqLogin(values)
+    // .then(result=>{
+    //   console.log(result);
     // })
-    // .then(res=>res.json())
-    // .then(data=>console.log(data))
+    // .catch(reason=>{
+    //   console.log(reason);
+    // })
+
+    let result = await reqLogin(values)
+    const { status,msg,data } = result
+
+    if (status === 0) {
+      console.log(data);
+    } else {
+      message.warning(msg)
+    }
   }
-  
+
 
   // 获取校验规则
   getRules = (type) => {
