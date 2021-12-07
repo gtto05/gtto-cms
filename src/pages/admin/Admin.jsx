@@ -1,17 +1,26 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import {Navigate} from 'react-router-dom'
+
 class Admin extends Component {
   render() {
-    return (
-      <div>
-        Admin
-      </div>
-    )
+    const {isLogin} = this.props.userInfo
+    if(!isLogin) {
+      return <Navigate to='../login'/>
+    } else {
+      return (
+        <div>
+          Admin
+        </div>
+      )
+    }
   }
   componentDidMount() {
-    console.log(this.props.userInfo);
+    console.log(this.props);
   }
 }
+
+
 
 export default connect(
   // 映射属性
