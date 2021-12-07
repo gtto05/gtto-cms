@@ -3,11 +3,12 @@ import { Button, Form, Input, message } from 'antd';
 import React, { Component } from 'react';
 
 import { reqLogin } from '../../utils/api'
+import { withRouter } from '../../utils/withRouter';
 
 import './css/login.less';
 import logo from './images/logo.jpg';
 
-export default class Login extends Component {
+class Login extends Component {
 
   onFinish = async (values) => {
     // console.log('Received values of form: ', values);
@@ -24,7 +25,11 @@ export default class Login extends Component {
     const { status,msg,data } = result
 
     if (status === 0) {
-      console.log(data);
+      // 跳转admin
+      // console.log(data);
+      // this.props.history.replace('/admin')
+      // console.log(this.props);
+      this.props.navigate('../admin')
     } else {
       message.warning(msg)
     }
@@ -101,3 +106,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default withRouter(Login)
