@@ -2,6 +2,7 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message } from 'antd';
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import { Navigate } from 'react-router-dom';
 import { createSaveLoginAction } from '../../redux/actions/loginAction';
 
 import { reqLogin } from '../../utils/api'
@@ -10,6 +11,14 @@ import { withRouter } from '../../utils/withRouter';
 import './css/login.less';
 import logo from './images/logo.jpg';
 
+
+@connect(
+  state=>({isLogin:state.userInfo.isLogin}),
+  {
+    saveUserInfo:createSaveLoginAction
+  }
+)
+@withRouter
 class Login extends Component {
 
   onFinish = async (values) => {
@@ -65,6 +74,10 @@ class Login extends Component {
   }
 
   render() {
+    const {isLogin} = this.props
+    if(isLogin) {
+      return <Navigate to='../admin'/>
+    }
     return (
       <div className='login'>
         <header className='header'>
@@ -116,9 +129,4 @@ class Login extends Component {
   }
 }
 
-export default connect(
-  state=>({}),
-  {
-    saveUserInfo:createSaveLoginAction
-  }
-)(withRouter(Login))
+export default Login

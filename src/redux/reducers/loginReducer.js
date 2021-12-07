@@ -1,10 +1,14 @@
 import { ADD_USER_INFO } from '../../utils/constant'
 
+let user = JSON.parse(localStorage.getItem('user')) || ''
+let token = localStorage.getItem('token') || ''
+
 let initState = {
-  user:{},
-  token:'',
-  isLogin:false
+  user,
+  token ,
+  isLogin:user && token ? true:false
 }
+console.log(initState);
 
 export const loginReducer = (preState = initState,action) => {
   const {type, data} = action

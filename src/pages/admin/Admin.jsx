@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {Navigate} from 'react-router-dom'
 
+@connect(
+  // 映射属性
+  state => ({userInfo:state.userInfo}),
+  // 映射方法
+  {}
+)
 class Admin extends Component {
   render() {
     const {isLogin} = this.props.userInfo
@@ -22,9 +28,4 @@ class Admin extends Component {
 
 
 
-export default connect(
-  // 映射属性
-  state => ({userInfo:state.userInfo}),
-  // 映射方法
-  {}
-)(Admin)
+export default Admin
