@@ -6,4 +6,8 @@ export const createSaveLoginAction = (data) => {
   localStorage.setItem('isLogin',true)
   return {type: ADD_USER_INFO,data}
 }
-export const createDeleteLoginAction = (data) => ({type: DELETE_USER_INFO,data})
+export const createDeleteLoginAction = () => {
+  localStorage.removeItem('user')
+  localStorage.removeItem('token')
+  return {type:DELETE_USER_INFO}
+}

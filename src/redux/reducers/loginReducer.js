@@ -1,4 +1,4 @@
-import { ADD_USER_INFO } from '../../utils/constant'
+import { ADD_USER_INFO,DELETE_USER_INFO } from '../../utils/constant'
 
 let user = JSON.parse(localStorage.getItem('user')) || ''
 let token = localStorage.getItem('token') || ''
@@ -17,6 +17,9 @@ export const loginReducer = (preState = initState,action) => {
     case ADD_USER_INFO:
       newState = {user:data.user,token:data.token,isLogin:true}
       return newState;
+    case DELETE_USER_INFO:
+      newState = {user:'',token:'',isLogin:false}
+      return newState
     default:
       return preState;
   }
