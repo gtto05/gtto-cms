@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
-export default class Admin extends Component {
+import {connect} from 'react-redux'
+class Admin extends Component {
   render() {
     return (
       <div>
@@ -8,4 +8,14 @@ export default class Admin extends Component {
       </div>
     )
   }
+  componentDidMount() {
+    console.log(this.props.userInfo);
+  }
 }
+
+export default connect(
+  // 映射属性
+  state => ({userInfo:state.userInfo}),
+  // 映射方法
+  {}
+)(Admin)

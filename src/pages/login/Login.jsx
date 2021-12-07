@@ -1,6 +1,8 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, message } from 'antd';
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import { createSaveLoginAction } from '../../redux/actions/loginAction';
 
 import { reqLogin } from '../../utils/api'
 import { withRouter } from '../../utils/withRouter';
@@ -25,6 +27,9 @@ class Login extends Component {
     const { status,msg,data } = result
 
     if (status === 0) {
+      // 保存到redux
+      this.props.saveUserInfo(data)
+
       // 跳转admin
       // console.log(data);
       // this.props.history.replace('/admin')
@@ -105,6 +110,15 @@ class Login extends Component {
       </div>
     )
   }
+
+  componentDidMount() {
+    // console.log(this);
+  }
 }
 
-export default withRouter(Login)
+export default connect(
+  state=>({}),
+  {
+    saveUserInfo:createSaveLoginAction
+  }
+)(withRouter(Login))
