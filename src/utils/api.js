@@ -15,3 +15,15 @@ export const reqLogin = (values) => axios.post(`${BSAE_URL}/login`, values)
 // })
 // .then(res=>res.json())
 // .then(data=>console.log(data))
+
+
+// 获取商品分类列表
+export const reqCategoryList = () => axios.get(`${BSAE_URL}/manage/category/list`)
+
+// 新增商品分类
+export const reqAddCategory = ({categoryName}) => axios.post(`${BSAE_URL}/manage/category/add`, {categoryName})
+
+// 修改商品分类
+export const reqUpdateCategory = (values) => axios.post(`${BSAE_URL}/manage/category/update`,values )
+
+

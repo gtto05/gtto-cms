@@ -9,7 +9,7 @@ import { reqLogin } from '../../utils/api'
 import { withRouter } from '../../utils/withRouter';
 
 import './css/login.less';
-import logo from './images/logo.jpg';
+import logo from '../../assets/img/logo.jpg';
 
 
 @connect(

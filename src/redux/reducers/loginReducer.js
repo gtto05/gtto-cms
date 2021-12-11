@@ -8,7 +8,6 @@ let initState = {
   token ,
   isLogin:user && token ? true:false
 }
-console.log(initState);
 
 export const loginReducer = (preState = initState,action) => {
   const {type, data} = action
