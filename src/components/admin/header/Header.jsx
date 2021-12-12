@@ -33,7 +33,7 @@ class Header extends Component {
 
   // 获取title
   getTitle = () => {
-    console.log('@@@@@@@');
+    // console.log('@@@@@@@');
     const { pathname } = this.props.location
     const pathKey = pathname.split('/').reverse()[0]
     let title = ''
@@ -55,13 +55,17 @@ class Header extends Component {
 
 
   componentDidMount() {
-    setInterval(()=> {
+    this.timerId = setInterval(()=> {
       this.setState({
         date:dayjs().format('YYYY 年 MM月DD日 HH:mm:ss')
       })
     },1000)
 
     this.getTitle()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerId)
   }
 
   render() {

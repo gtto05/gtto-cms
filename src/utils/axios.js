@@ -9,7 +9,7 @@ import 'nprogress/nprogress.css'
 axios.interceptors.request.use(config => {
   NProgress.start()
   // console.log(config);
-  let {method,data} = config
+  let {data} = config
     // 若传递过来的参数是对象形式
     if(data instanceof Object) {
       config.data = qs.stringify(data)
@@ -18,7 +18,7 @@ axios.interceptors.request.use(config => {
     if(token) {
       config.headers.Authorization = 'gtto_' + token
     }
-  console.log(config);
+  // console.log(config);
   return config;
 }, error => {
   return Promise.reject(error)

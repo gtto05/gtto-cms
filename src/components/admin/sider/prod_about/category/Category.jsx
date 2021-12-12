@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-// 引入antd组件
-import { Button, Card, Input, Modal, Table, Form, message } from 'antd'
 // 引入ant图标
 import { PlusOutlined } from '@ant-design/icons';
+// 引入antd组件
+import { Button, Card, Form, Input, message, Modal, Table } from 'antd';
+import React, { Component } from 'react';
 // 引入请求接口----商品分类
-import { reqCategoryList, reqAddCategory, reqUpdateCategory } from '../../../../../utils/api'
+import { reqAddCategory, reqCategoryList, reqUpdateCategory } from '../../../../../utils/api';
 // 引入常量-----分页器
 import { PAGE_SIZE } from '../../../../../utils/constant';
 
@@ -27,7 +27,7 @@ export default class Category extends Component {
   getCategoryList = async () => {
     let res = await reqCategoryList()
     this.setState({ isLoading: false })
-    const { status, data, msg } = res
+    const { status, data } = res
     if (status === 0) {
       this.setState({
         categoryList: data
@@ -75,7 +75,7 @@ export default class Category extends Component {
 
   toUpdate = async (values) => {
     let result = await reqUpdateCategory(values)
-    const { status, msg } = result
+    const { status} = result
     if (status === 0) {
       message.success('更新商品成功！')
       // 清空表单域

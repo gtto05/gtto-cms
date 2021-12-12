@@ -106,6 +106,7 @@ module.exports = function (router) {
     const {productId, status} = req.body
     ProductModel.findOneAndUpdate({_id: productId}, {status})
       .then(oldProduct => {
+        console.log(oldProduct);
         res.send({status: 0})
       })
       .catch(error => {

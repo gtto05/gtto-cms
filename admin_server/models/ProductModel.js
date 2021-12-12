@@ -4,6 +4,9 @@
 // 1.引入mongoose
 const mongoose = require('mongoose')
 
+mongoose.set('useFindAndModify', false)
+
+
 // 2.字义Schema(描述文档结构)
 const productSchema = new mongoose.Schema({
   categoryId: {type: String, required: true}, // 所属分类的id

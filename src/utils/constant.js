@@ -1,4 +1,4 @@
-export const BSAE_URL = ''
+export const BASE_URL = ''
 
 // action 类型
 export const ADD_USER_INFO = 'add_user_info'

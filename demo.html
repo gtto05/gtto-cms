@@ -8,21 +8,60 @@
 </head>
 <body>
   <script>
-    let arr = [
-      {
-        title:'xander',
-        age:18
+    let obj = {
+      name:'xander',
+      test:null,
+      test2:undefined,
+      info:{
+        gender:'male',
+        hobby:['coding','gym']
       },
-      {
-        title:'holden',
-        age:20
+      date:new Date(),
+      reg: /\.jsx?/,
+      sing:function() {
+        console.log('我在唱歌');
       }
-    ]
+    }
 
-    let res = arr.find((item) => {
-      return item.title === 'holden'
-    })
-    console.log(res);
+    // let obj2 = JSON.parse(JSON.stringify(obj))
+    // console.log(obj2);
+
+    // function deepClone(obj) {
+    //   // 判断是否是null
+    //   // 判断是否是对象
+    //   // 判断是否是正则对象
+    //   // 判断是否是日期对象
+    //   // 然后进行遍历赋值给新对象，并返回出去
+    //   if(obj === null) return null
+    //   if(typeof obj != 'object') return obj
+    //   if(obj instanceof RegExp) return new RegExp(obj)
+    //   if(obj instanceof Date) return new Date(obj)
+    //   // console.log(obj.constructor);
+    //   let newObj = {}
+    //   for (const key in obj) {
+    //     newObj[key] = deepClone(obj[key])        
+    //   }
+    //   return newObj
+    // }
+
+    function deepClone(obj) {
+      let res = {}
+      for (const key in obj) {
+        if(typeof obj[key] === 'object') {
+          res[key] = deepClone(obj[key])
+        } else {
+          res[key] = obj[key]
+        }
+      }
+      return res
+    }
+
+    let obj2 = deepClone(obj)
+    obj2.info = null
+    console.log(obj2);
+    console.log(obj);
+
+  
   </script>
 </body>
 </html>

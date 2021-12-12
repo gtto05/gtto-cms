@@ -53,7 +53,7 @@ app.get('/test', function (req, res) {
 
 // 通过mongoose连接数据库
 const {SERVER_CONFIG, DB_CONFIG} = require('./config')
-mongoose.connect(`mongodb://localhost:${DB_CONFIG.port}/${DB_CONFIG.name}`, {useNewUrlParser: true})
+mongoose.connect(`mongodb://localhost:${DB_CONFIG.port}/${DB_CONFIG.name}`, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(() => {
     console.log('连接数据库成功!!!')
     // 只有当连接上数据库后才去启动服务器
