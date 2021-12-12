@@ -43,7 +43,7 @@ class Login extends Component {
       // console.log(data);
       // this.props.history.replace('/admin')
       // console.log(this.props);
-      this.props.navigate('../admin')
+      this.props.navigate('../admin/home')
     } else {
       message.warning(msg)
     }

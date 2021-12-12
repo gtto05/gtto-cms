@@ -48,6 +48,7 @@ class LeftNav extends Component {
   // 当前选中keys
   getSelectedKey = () => {
     const selectedKey = this.props.location.pathname.split('/').reverse()[0]
+    console.log(selectedKey);
     return selectedKey
   }
   getOpenKeys = () => {
@@ -62,6 +63,7 @@ class LeftNav extends Component {
 
   render() {
     // console.log(this.menuFormat(menuConfig));
+    console.log('left-nev-----render');
     return (
       <div className='left_nav'>
         <header className='nav-header'>
@@ -69,7 +71,7 @@ class LeftNav extends Component {
           <h1>商品管理系统</h1>
         </header>
         <Menu
-          defaultSelectedKeys={this.getSelectedKey()}
+          selectedKeys={this.getSelectedKey()}
           defaultOpenKeys={this.getOpenKeys()}
           mode="inline"
           className='menu'

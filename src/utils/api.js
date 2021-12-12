@@ -20,7 +20,7 @@ export const reqLogin = (values) => axios.post(`${BSAE_URL}/login`, values)
 // 获取商品分类列表
 export const reqCategoryList = () => axios.get(`${BSAE_URL}/manage/category/list`)
 
-// 新增商品分类
+// TODO:新增商品分类
 export const reqAddCategory = ({categoryName}) => axios.post(`${BSAE_URL}/manage/category/add`, {categoryName})
 
 // 修改商品分类
